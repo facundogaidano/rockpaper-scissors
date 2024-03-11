@@ -13,80 +13,125 @@ function getComputerChoice() {
   return choice;
 };
 
+const buttons = document.querySelectorAll("button")
+
+function getPlayerChoice() {
+  return new Promise((resolve) => {
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        resolve(button.id)
+      });
+    })
+  })
+}
+
 function playRound(playerSelection, computerSelection) {
   let win = `You Win! ${playerSelection} beats ${computerSelection}`
   let lose = `You Lose! ${computerSelection} beats ${playerSelection}`
   let tie = 'Tie!'
+
+  const choiceComputer = document.getElementById('Computer')
+  const choicePlayer = document.getElementById('You')
+
   switch(playerSelection) {
-      case 'rock':
+      case 'Rock':
           if (computerSelection === 'Rock') {
-              console.log(tie);
-              return 0;
+            console.log(tie);
+            choicePlayer.textContent = `✊🏻`
+            choiceComputer.textContent = `✊🏻`
+            return 0;
           }
           if (computerSelection === 'Paper') {
-              console.log(lose);
-              return 1;
+            console.log(lose);
+            choicePlayer.textContent = `✊🏻`
+            choiceComputer.textContent = `✋🏻`
+            return 1;
           }
           else {
-              console.log(win);
-              return 2;
+            console.log(win);
+            choicePlayer.textContent = `✊🏻`
+            choiceComputer.textContent = `✌🏻`
+            return 2;
           };
-      case 'paper':
+      case 'Paper':
           if (computerSelection === 'Rock') {
-              console.log(win);
-              return 2;
+            choicePlayer.textContent = `✋🏻`
+            choiceComputer.textContent = `✊🏻`
+            console.log(win);
+            return 2;
           }
           if (computerSelection === 'Paper') {
-              console.log(tie);
-              return 0;
+            choicePlayer.textContent = `✋🏻`
+            choiceComputer.textContent = `✋🏻`
+            console.log(tie);
+            return 0;
           }
           else {
-              console.log(lose);
-              return 1;
+            console.log(lose);
+            choicePlayer.textContent = `✋🏻`
+            choiceComputer.textContent = `✌🏻`
+            return 1;
           }
-      case 'scissor':
+      case 'Scissor':
           if (computerSelection === 'Rock') {
-              console.log(lose);
-              return 1;
+            choicePlayer.textContent = `✌🏻`
+            choiceComputer.textContent = `✊🏻`
+            console.log(lose);
+            return 1;
           }
           if (computerSelection === 'Paper') {
-              console.log(win);
-              return 2;
+            choicePlayer.textContent = `✌🏻`
+            choiceComputer.textContent = `✋🏻`
+            console.log(win);
+            return 2;
           }
           else {
-              console.log(tie);
-              return 0;
+            console.log(tie);
+            choicePlayer.textContent = `✌🏻`
+            choiceComputer.textContent = `✌🏻`
+            return 0;
           }
   }
 };
 
-function playGame() {
+async function playGame() {
   let player = 0
   let computer = 0
+  const roundInfoElement = document.getElementById('roundInfo')
+  const scoreInfoElement = document.getElementById('scoreInfo')
+  const roundStatusElement = document.getElementById('roundStatus')
+  
+  scoreInfoElement.textContent = `You: ${player} --- Computer: ${computer}`
+  roundStatusElement.textContent = ``
+
   for (let step = 0; step < 5; step++) {
-      console.log(`Round ${step + 1}`)
-      var playerSelection = prompt("Rock, Paper, or Scissors?: ").toLowerCase();
-      let computerSelection = getComputerChoice();
-      switch(playRound(playerSelection, computerSelection)) {
-          case 0:
-              console.log('')
-              continue;
-          case 1:
-              computer++;
-          case 2:
-              player++;
-          console.log(`Score: You: ${player}, Computer: ${computer}`);
-          console.log('')
-      } 
-  } 
+    console.log(`Round ${step + 1}`)
+    let playerSelection = await getPlayerChoice();
+    let computerSelection = getComputerChoice();
+    switch(playRound(playerSelection, computerSelection)) {
+      case 0:
+        roundStatusElement.textContent = `TIE!`
+        break
+      case 1:
+        roundStatusElement.textContent = `Computer won the round! ${computerSelection} beats ${playerSelection}.`
+        computer++;
+        break;
+      case 2:
+        roundStatusElement.textContent = `You won the round! ${playerSelection} beats ${computerSelection}.`
+        player++;
+        break;
+      }
+    scoreInfoElement.textContent = `Score: You: ${player}, Computer: ${computer}`
+    console.log(playRound(playerSelection, computerSelection))
+    }
   if (player > computer) {
-      console.log(`You Win The Game! You: ${player}, Computer: ${computer}`);
+    roundInfoElement.textContent = `You won the game! You: ${player}, Computer: ${computer}`
   }
   else if (computer > player) {
-      console.log(`You Lose The Game! You: ${player}, Computer: ${computer}`)
+    roundInfoElement.textContent = `You lose the game! You: ${player}, Computer: ${computer}`
   }
   else {
-      console.log(`Tie Game! You: ${player}, Computer: ${computer}`)
+    roundInfoElement.textContent = `Tie game! You: ${player}, Computer: ${computer}`
   }
 
 };

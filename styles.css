@@ -1,0 +1,170 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* Main stuff */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('./assets/fonts/OpenSans-VariableFont_wdth\,wght.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('./assets/fonts/OpenSans-VariableFont_wdth\,wght.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+:root {
+	--color-bg: #334155;
+	--color-gray: #475569;
+	--color-red: #dc2626;
+	--color-text: #f1f5f9;
+	--color-description: #636363;
+	--color-button: #0891b2;
+  --color-bg-button: #64748b;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit
+}
+
+html {
+	font-size: 62.5%;
+	box-sizing: content-box
+}
+
+body {
+	background-color: var(--color-bg);
+	color: var(--color-text);
+	font-family: 'Open Sans', sans-serif;
+	font-style: normal;
+	font-size: 1.6rem;
+	font-weight: 300;
+}
+
+button,input {
+	font-family: inherit
+}
+
+button {
+	border: 2px solid var(---color-bg);
+  background-color: var(--color-bg-button);
+  border-radius: 3rem;
+  width: 150px;
+  height: 150px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px; /* Opcional: agrega un espacio entre los botones */
+ }
+
+label {
+  font-size: 5.8rem;
+}
+
+.title {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 5.5rem;
+  margin-top: 2%;
+  padding: 2.5% 0;
+  background-color: var(--color-button);
+}
+
+.gameScreen, #roundStatus, #roundInfo {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  font-size: 2.5rem;
+  margin: 25px;
+}
+
+.choices {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 8%;
+  margin: 10vh;
+}
+
+.choices span {
+  font-size: 25px;
+  
+}
+
+#You, #Computer {
+  border: 2px solid var(--color-bg);
+  background-color: var(--color-bg-button);
+  border-radius: 3rem;
+  width: 150px;
+  height: 150px;
+  font-size: 5.5rem;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  margin-top: 25px
+}
